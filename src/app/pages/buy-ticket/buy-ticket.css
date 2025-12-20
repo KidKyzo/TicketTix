@@ -1,0 +1,197 @@
+.buy-container {
+  max-width: 980px;
+  margin: 30px auto;
+  padding: 18px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.back-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #48cae4;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.back-btn:hover {
+  background: #0077b6;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.event-summary {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+.event-thumb {
+  width: 280px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.event-meta {
+  flex: 1;
+}
+
+/* Seat Map Wrapper */
+.seat-map-wrapper {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.section-title {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.section-subtitle {
+  margin: 0 0 14px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Discount Box */
+.discount-box {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px dashed #e0e0e0;
+  background: #fafafa;
+}
+
+.discount-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.discount-row input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.use-discount-btn,
+.clear-discount-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #48cae4;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.clear-discount-btn {
+  background: #6c757d;
+}
+
+.discount-status .ok {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.discount-status .err {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.discount-status .hint {
+  color: #666;
+  font-size: 13px;
+}
+
+/* Summary */
+.summary {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-weight: 600;
+}
+
+.summary-line.total {
+  font-size: 18px;
+  margin-top: 6px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.seat-list {
+  font-size: 13px;
+  color: #0077b6;
+  font-weight: 500;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #48cae4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.confirm-btn:hover:not(:disabled) {
+  background: #0077b6;
+}
+
+.confirm-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.waitlist-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.waitlist-btn:hover {
+  background: #e0a800;
+}
+
+.notfound {
+  padding: 30px;
+  text-align: center;
+}

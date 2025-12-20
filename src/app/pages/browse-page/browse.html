@@ -1,0 +1,30 @@
+<div class="browse-container">
+  <h2 class="page-title">Browse Events</h2>
+
+  <div class="event-grid" *ngIf="events.length > 0; else noEvents">
+    <a
+      class="event-card"
+      *ngFor="let e of events; let i = index"
+      [routerLink]="['/event-details', e.id]"
+    >
+      <img [src]="e.image" class="event-img" />
+
+      <div class="event-content">
+        <div class="one-line event-title">{{ e.title }}</div>
+
+        <div class="event-desc one-line">{{ e.description }}</div>
+
+        <div class="divider"></div>
+
+        <div class="event-date">Date : {{ e.date }}</div>
+        <div class="event-time">Time : {{ e.time }}</div>
+        <div class="event-location">{{ e.location }}</div>
+        <div class="event-price">{{ e.price }}</div>
+      </div>
+    </a>
+  </div>
+
+  <ng-template #noEvents>
+    <p class="empty">No events available.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,108 @@
+.login-container {
+  width: 500px;
+  margin: 60px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.role-switch {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.role-switch button {
+  flex: 1;
+  padding: 10px;
+  background: #eaeaea;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.role-switch button.active {
+  background: #48cae4;
+  color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #48cae4;
+}
+
+.login-btn {
+  padding: 12px;
+  margin-top: 16px;
+  background: #48cae4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.login-btn:hover {
+  background: #0077b6;
+}
+
+.signup-links {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.signup-links p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.signup-links a {
+  color: #48cae4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dummy-account {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.dummy-account p {
+  margin: 4px 0;
+  color: #666;
+}

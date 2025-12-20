@@ -1,0 +1,78 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="page-title">Become an Organizer</h2>
+    <p class="subtitle">Join Ticketix and start creating events</p>
+
+    <form>
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Your full name" />
+      </div>
+
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" [(ngModel)]="email" name="email" placeholder="your.email@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" [(ngModel)]="phone" name="phone" placeholder="+62 xxx xxx xxxx" />
+      </div>
+
+      <div class="form-group">
+        <label>Organization Name *</label>
+        <input
+          type="text"
+          [(ngModel)]="organization"
+          name="organization"
+          placeholder="Your company or organization"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Why do you want to be an organizer? *</label>
+        <textarea
+          [(ngModel)]="description"
+          name="description"
+          rows="4"
+          placeholder="Tell us about your experience and what kind of events you plan to organize..."
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password *</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Min. 6 characters"
+          />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm password"
+          />
+        </div>
+      </div>
+
+      <div class="info-box">
+        <p>
+          Your application will be reviewed by our admin team. Once approved, you'll be able to
+          login and start creating events.
+        </p>
+      </div>
+
+      <button type="button" class="submit-btn" (click)="submitForm()" [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Submit Application</span>
+        <span *ngIf="isSubmitting">Submitting...</span>
+      </button>
+
+      <p class="login-link">Already an organizer? <a href="/login">Login here</a></p>
+    </form>
+  </div>
+</div>

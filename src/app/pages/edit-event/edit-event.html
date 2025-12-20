@@ -1,0 +1,69 @@
+<div class="edit-event-container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <h1>Edit Event</h1>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading event data...</div>
+
+  <div class="form-container" *ngIf="!isLoading">
+    <div class="form-group">
+      <label>Event Title</label>
+      <input type="text" [(ngModel)]="event.title" placeholder="e.g. Summer Concert 2024" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Date</label>
+        <input type="date" [(ngModel)]="event.date" />
+      </div>
+      <div class="form-group half">
+        <label>Time</label>
+        <input type="time" [(ngModel)]="event.time" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" [(ngModel)]="event.location" />
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="event.description" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Image URL</label>
+      <input type="text" [(ngModel)]="event.image" />
+    </div>
+
+    <div class="pricing-section">
+      <h3>Ticket Pricing</h3>
+      <p class="info-text">Note: Changing prices will update unsold seats only.</p>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Price: Lower Foyer</label>
+          <div class="price-input">
+            <span>Rp</span>
+            <input type="number" [(ngModel)]="event.price_lower_foyer" min="0" />
+          </div>
+        </div>
+        <div class="form-group half">
+          <label>Price: Balcony</label>
+          <div class="price-input">
+            <span>Rp</span>
+            <input type="number" [(ngModel)]="event.price_balcony" min="0" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="save-btn" (click)="saveEvent()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </div>
+  </div>
+</div>

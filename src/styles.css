@@ -1,0 +1,44 @@
+/* Global Font */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* Jika hide-layout aktif, sembunyikan header/footer */
+.hide-layout app-header,
+.hide-layout app-footer {
+  display: none !important;
+}
+
+/* Global Button Hover Effect */
+button,
+.btn,
+.action-btn,
+.back-btn,
+.login-btn,
+.logout-btn {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover,
+.btn:hover,
+.action-btn:hover,
+.back-btn:hover,
+.login-btn:hover,
+.logout-btn:hover {
+  transform: translateY(-4px);
+}

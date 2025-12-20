@@ -1,0 +1,71 @@
+<div class="create-event-container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <h1>Create New Event</h1>
+  </div>
+
+  <div class="form-container">
+    <div class="form-group">
+      <label>Event Title</label>
+      <input type="text" [(ngModel)]="event.title" placeholder="e.g. Summer Concert 2024" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Date</label>
+        <input type="date" [(ngModel)]="event.date" />
+      </div>
+      <div class="form-group half">
+        <label>Time</label>
+        <input type="time" [(ngModel)]="event.time" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" [(ngModel)]="event.location" disabled />
+      <small>Fixed Location: Grand Event Hall</small>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="event.description" rows="4" placeholder="Event details..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Image URL</label>
+      <input type="text" [(ngModel)]="event.image" placeholder="https://example.com/image.jpg" />
+    </div>
+
+    <div class="pricing-section">
+      <h3>Ticket Pricing</h3>
+      <p class="info-text">
+        Total Capacity: 300 Seats<br />
+        (200 Lower Foyer + 100 Balcony)
+      </p>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Price: Lower Foyer (200 Seats)</label>
+          <div class="price-input">
+            <span>Rp</span>
+            <input type="number" [(ngModel)]="event.price_lower_foyer" min="0" />
+          </div>
+        </div>
+        <div class="form-group half">
+          <label>Price: Balcony (100 Seats)</label>
+          <div class="price-input">
+            <span>Rp</span>
+            <input type="number" [(ngModel)]="event.price_balcony" min="0" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="save-btn" (click)="saveEvent()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating...' : 'Create Event' }}
+      </button>
+    </div>
+  </div>
+</div>

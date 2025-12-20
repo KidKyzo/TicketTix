@@ -1,0 +1,17 @@
+<div class="event-details-container">
+  <img [src]="event.image" class="details-image" />
+
+  <div class="details-content">
+    <h1 class="details-title">{{ event.title }}</h1>
+
+    <p class="details-description">{{ event.description }}</p>
+
+    <p><strong>Date:</strong> {{ event.date }} at {{ event.time }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+
+    <div class="button-group">
+      <button class="buy-btn" [routerLink]="['/buy-ticket', id]">Buy Ticket</button>
+      <button class="back-btn" routerLink="/browse-events">Back</button>
+    </div>
+  </div>
+</div>

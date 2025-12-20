@@ -1,0 +1,101 @@
+<div class="buy-container" *ngIf="event; else notFound">
+  <div class="top-row">
+    <button class="back-btn" (click)="goBack()">Back</button>
+    <h2 class="page-title">{{ event.title }}</h2>
+  </div>
+
+  <div class="event-summary">
+    <img [src]="event.image" class="event-thumb" *ngIf="event.image" />
+    <div class="event-meta">
+      <p class="event-date"><strong>Date:</strong> {{ event.date }} at {{ event.time }}</p>
+      <p class="event-location"><strong>Location:</strong> {{ event.location }}</p>
+      <p class="event-desc">{{ event.description }}</p>
+    </div>
+  </div>
+
+  <!-- Interactive Seat Map -->
+  <div class="seat-map-wrapper">
+    <h3 class="section-title">Select Your Seats</h3>
+    <p class="section-subtitle">
+      Click on available seats to select. Total capacity: 300 seats (Balcony: 100, Lower Foyer: 200)
+    </p>
+
+    <app-seat-map
+      [balconyConfig]="balconyConfig"
+      [lowerConfig]="lowerConfig"
+      [maxSelection]="10"
+      (selectionChange)="onSeatSelectionChange($event)"
+      (totalChange)="onTotalChange($event)"
+    ></app-seat-map>
+  </div>
+
+  <div class="discount-box">
+    <label>Discount code (optional)</label>
+    <div class="discount-row">
+      <input
+        type="text"
+        placeholder="Enter code"
+        [(ngModel)]="enteredDiscount"
+        name="discountInput"
+      />
+      <button type="button" class="use-discount-btn" (click)="useDiscount()">Use</button>
+      <button
+        *ngIf="discountValid"
+        type="button"
+        class="clear-discount-btn"
+        (click)="clearDiscount()"
+      >
+        Clear
+      </button>
+    </div>
+
+    <div class="discount-status">
+      <span *ngIf="discountValid" class="ok"
+        >Applied: {{ appliedDiscountCode }} ({{ discountPercent }}%)</span
+      >
+      <span *ngIf="discountInvalid" class="err">Code not valid</span>
+      <span *ngIf="!enteredDiscount && !discountValid" class="hint"
+        >Enter a code and press Use</span
+      >
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-line">
+      <span>Seats selected:</span><span>{{ totalTickets }}</span>
+    </div>
+    <div class="summary-line" *ngIf="selectedSeats.length > 0">
+      <span>Selected seats:</span>
+      <span class="seat-list">
+        <span *ngFor="let seat of selectedSeats; let last = last">
+          {{ seat.id }}{{ last ? '' : ', ' }}
+        </span>
+      </span>
+    </div>
+    <div class="summary-line">
+      <span>Subtotal</span><span>Rp {{ formatNumber(subtotal) }}</span>
+    </div>
+    <div class="summary-line" *ngIf="discountPercent > 0">
+      <span>Discount ({{ discountPercent }}%)</span
+      ><span>- Rp {{ formatNumber(discountAmount) }}</span>
+    </div>
+    <div class="summary-line total">
+      <span>Total</span><span>Rp {{ formatNumber(total) }}</span>
+    </div>
+
+    <button class="confirm-btn" (click)="proceedToPayment()" [disabled]="totalTickets === 0">
+      Proceed to Payment
+    </button>
+
+    <button class="waitlist-btn" *ngIf="isSoldOut && totalTickets === 0" (click)="joinWaitlist()">
+      Join Waitlist
+    </button>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="notfound">
+    <p>Event not found.</p>
+    <button (click)="goBack()">Back</button>
+  </div>
+</ng-template>

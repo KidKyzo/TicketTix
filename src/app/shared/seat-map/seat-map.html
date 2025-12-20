@@ -1,0 +1,110 @@
+<div class="seat-map-container">
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <span class="seat-sample available"></span>
+      <span>Available</span>
+    </div>
+    <div class="legend-item">
+      <span class="seat-sample selected"></span>
+      <span>Selected</span>
+    </div>
+    <div class="legend-item">
+      <span class="seat-sample sold"></span>
+      <span>Sold</span>
+    </div>
+  </div>
+
+  <!-- Stage - Positioned in front of Lower Foyer -->
+  <div class="stage-container">
+    <div class="stage">STAGE</div>
+  </div>
+
+  <!-- Lower Foyer Section (200 seats) - Closest to stage -->
+  <div class="area-section lower-section">
+    <div class="area-header">
+      <h3 class="area-title">Lower Foyer</h3>
+      <div class="area-info">
+        <span class="price-tag">Rp {{ formatPrice(lowerConfig.price) }}</span>
+        <span class="availability">
+          Available: {{ getAvailableCount(lowerSeats) }} | Selected: {{ getSelectedCount('lower') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="seats-grid">
+      <!-- Column Headers -->
+      <div class="row-label"></div>
+      <div class="col-header" *ngFor="let col of getColNumbers(lowerConfig.cols)">
+        {{ col }}
+      </div>
+
+      <!-- Seat Rows -->
+      <ng-container *ngFor="let row of lowerSeats; let rowIdx = index">
+        <div class="row-label">{{ rowLabels[rowIdx] }}</div>
+        <div
+          *ngFor="let seat of row"
+          [class]="getSeatClass(seat)"
+          [title]="seat.id + ' - Rp ' + formatPrice(seat.price)"
+          (click)="toggleSeat(seat)"
+        >
+          <span class="seat-id">{{ seat.id }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Walkway Divider -->
+  <div class="area-divider">
+    <span class="divider-line"></span>
+    <span class="divider-text">WALKWAY</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <!-- Balcony Section (100 seats) - Further from stage -->
+  <div class="area-section balcony-section">
+    <div class="area-header">
+      <h3 class="area-title">Balcony</h3>
+      <div class="area-info">
+        <span class="price-tag">Rp {{ formatPrice(balconyConfig.price) }}</span>
+        <span class="availability">
+          Available: {{ getAvailableCount(balconySeats) }} | Selected:
+          {{ getSelectedCount('balcony') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="seats-grid">
+      <!-- Column Headers -->
+      <div class="row-label"></div>
+      <div class="col-header" *ngFor="let col of getColNumbers(balconyConfig.cols)">
+        {{ col }}
+      </div>
+
+      <!-- Seat Rows -->
+      <ng-container *ngFor="let row of balconySeats; let rowIdx = index">
+        <div class="row-label">{{ rowLabels[rowIdx] }}</div>
+        <div
+          *ngFor="let seat of row"
+          [class]="getSeatClass(seat)"
+          [title]="seat.id + ' - Rp ' + formatPrice(seat.price)"
+          (click)="toggleSeat(seat)"
+        >
+          <span class="seat-id">{{ seat.id }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Selection Summary -->
+  <div class="selection-summary" *ngIf="selectedSeats.length > 0">
+    <h4>Selected Seats ({{ selectedSeats.length }})</h4>
+    <div class="selected-seats-list">
+      <span class="selected-seat-tag" *ngFor="let seat of selectedSeats">
+        {{ seat.area === 'balcony' ? 'Balcony' : 'Lower' }} - {{ seat.id }}
+        <button class="remove-seat" (click)="toggleSeat(seat)">x</button>
+      </span>
+    </div>
+    <button class="clear-btn" (click)="clearSelection()">Clear All</button>
+  </div>
+</div>

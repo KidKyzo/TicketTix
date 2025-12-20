@@ -1,0 +1,68 @@
+<div class="tickets-container">
+  <h2 class="page-title">My Tickets</h2>
+
+  <!-- If no tickets -->
+  <div *ngIf="tickets.length === 0" class="empty-box">
+    <p>You have not purchased any tickets yet.</p>
+    <a href="/browse-events" class="browse-btn">Browse Events</a>
+  </div>
+
+  <!-- Ticket list -->
+  <div *ngFor="let t of tickets" class="ticket-card">
+    <div class="ticket-header">
+      <span class="booking-id">{{ t.id }}</span>
+      <span class="purchase-date">{{ formatDate(t.date) }}</span>
+    </div>
+
+    <div class="ticket-body">
+      <div class="left-section">
+        <img [src]="t.eventImage" class="event-img" *ngIf="t.eventImage" />
+        <div class="no-image" *ngIf="!t.eventImage">Event</div>
+      </div>
+
+      <div class="ticket-info">
+        <h3 class="event-title">{{ t.eventTitle }}</h3>
+
+        <div class="event-details">
+          <span class="detail-item">Date: {{ t.eventDate }}</span>
+          <span class="detail-item">Time: {{ t.eventTime }}</span>
+          <span class="detail-item">Location: {{ t.eventLocation }}</span>
+        </div>
+
+        <!-- Seat Numbers -->
+        <div class="seats-section">
+          <div class="seats-label">Your Seats:</div>
+          <div class="seats-list">{{ getSeatNumbers(t) }}</div>
+        </div>
+
+        <!-- Tickets breakdown -->
+        <div class="ticket-list">
+          <div *ngFor="let item of t.tickets" class="ticket-row">
+            <span class="area-info">
+              {{ item.areaName }}
+              <span class="seat-tag" *ngIf="item.seatNumber">{{ item.seatNumber }}</span>
+            </span>
+            <span class="qty">x{{ item.qty }}</span>
+            <span class="price">Rp {{ formatNumber(item.price * item.qty) }}</span>
+          </div>
+        </div>
+
+        <div class="price-summary">
+          <div class="price-row" *ngIf="t.discountAmount > 0">
+            <span>Discount ({{ t.discountPercent }}%)</span>
+            <span class="discount">- Rp {{ formatNumber(t.discountAmount) }}</span>
+          </div>
+          <div class="price-row total">
+            <span>Total</span>
+            <span>Rp {{ formatNumber(t.total) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <img [src]="generateQR(t.id)" class="qr-img" />
+        <p class="qr-label">Scan at entry</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,254 @@
+.edit-container {
+  max-width: 960px;
+  margin: 24px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.edit-bar {
+  height: 30px;
+  margin-left: 12px;
+}
+
+.back-btn {
+  background: #48cae4;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.back-btn:hover {
+  background: #0077b6;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #333;
+  font-size: 13px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 6px;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #48cae4;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.col {
+  flex: 1;
+}
+
+/* Capacity Banner */
+.capacity-banner {
+  background: #48cae4;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  color: white;
+}
+
+.capacity-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.capacity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.capacity-text strong {
+  font-size: 15px;
+}
+
+.capacity-text span {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.area-box {
+  margin-top: 14px;
+  padding: 14px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.area-header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.area-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+.capacity-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  background: #48cae4;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+}
+
+.capacity-used {
+  font-size: 16px;
+}
+
+.capacity-divider {
+  opacity: 0.7;
+}
+
+.capacity-max {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.capacity-label {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-left: 3px;
+}
+
+/* Capacity Bar */
+.capacity-bar {
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.capacity-fill {
+  height: 100%;
+  background: #48cae4;
+  border-radius: 3px;
+}
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  font-size: 12px;
+  color: #666;
+  background: #f1f1f1;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.section-sub {
+  margin: 12px 0 8px 0;
+  font-weight: 600;
+  color: #333;
+  font-size: 13px;
+}
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticket-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.ticket-item input {
+  flex: 1;
+}
+
+.delete-ticket {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-ticket:hover {
+  background: #c82333;
+}
+
+.add-ticket-btn {
+  margin-top: 8px;
+  background: #48cae4;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.add-ticket-btn:hover {
+  background: #0077b6;
+}
+
+.save-btn {
+  margin-top: 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #218838;
+}

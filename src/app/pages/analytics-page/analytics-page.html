@@ -1,0 +1,70 @@
+<div class="back-btn-wrap">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+</div>
+
+<div class="analytics-wrap" id="analyticsWrap">
+  <header class="header">
+    <h2>Event Analytics</h2>
+    <div class="header-controls">
+      <div class="filter-row">
+        <label>Period</label>
+        <select [(ngModel)]="reportPeriod" (change)="onPeriodChange()">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+
+        <div *ngIf="reportPeriod === 'daily'">
+          <label>Choose Date</label>
+          <input type="date" [(ngModel)]="filterDate" (change)="regenerate()" />
+        </div>
+
+        <div *ngIf="reportPeriod === 'weekly'">
+          <label>Week Start (Mon)</label>
+          <input type="date" [(ngModel)]="filterWeekStart" (change)="regenerate()" />
+        </div>
+
+        <div *ngIf="reportPeriod === 'monthly'">
+          <label>Choose Month</label>
+          <input type="month" [(ngModel)]="filterMonth" (change)="regenerate()" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" (click)="downloadPDF()">Download PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-cards">
+    <div class="card">
+      <div class="value">{{ totalTickets }}</div>
+      <div class="label">Total Tickets Sold</div>
+    </div>
+    <div class="card">
+      <div class="value">Rp {{ totalRevenue | number : '1.0-0' }}</div>
+      <div class="label">Total Revenue</div>
+    </div>
+    <div class="card">
+      <div class="value">{{ occupancyPercent }}%</div>
+      <div class="label">Seat Occupancy</div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Ticket Sales</h3>
+      <canvas id="ticketChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h3>Revenue</h3>
+      <canvas id="revenueChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h3>Seat Occupancy (by area)</h3>
+      <canvas id="occupancyChart"></canvas>
+    </div>
+  </div>
+</div>

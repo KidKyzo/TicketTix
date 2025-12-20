@@ -1,0 +1,43 @@
+<div class="login-container">
+  <h2 class="login-title">Login</h2>
+
+  <!-- Role Selection -->
+  <div class="role-switch">
+    <button [class.active]="role === 'attendee'" (click)="setRole('attendee')">Attendee</button>
+    <button [class.active]="role === 'organizer'" (click)="setRole('organizer')">Organizer</button>
+    <button [class.active]="role === 'admin'" (click)="setRole('admin')">Admin</button>
+  </div>
+
+  <!-- Login Form -->
+  <form>
+    <label>Email</label>
+    <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email" />
+
+    <label>Password</label>
+    <input
+      type="password"
+      placeholder="Enter your password"
+      [(ngModel)]="password"
+      name="password"
+    />
+
+    <button type="button" class="login-btn" (click)="login()">Login</button>
+  </form>
+
+  <!-- Registration Links -->
+  <div class="signup-links">
+    <p *ngIf="role === 'attendee'">
+      Don't have an account? <a routerLink="/register-attendee">Register Here</a>
+    </p>
+    <p *ngIf="role === 'organizer'">
+      Want to become an Organizer? <a routerLink="/register-organizer">Register Here</a>
+    </p>
+  </div>
+
+  <!-- Demo Accounts -->
+  <div class="dummy-account">
+    <p>Admin: admin@ticketix.com / admin123</p>
+    <p>Organizer: organizer@ticketix.com / org123</p>
+    <p>Attendee: user@ticketix.com / user123</p>
+  </div>
+</div>
