@@ -1,0 +1,88 @@
+/* Background gradient */
+.login-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #ffffff, #dff6ff);
+}
+
+/* Main card */
+.login-box {
+  background: white;
+  padding: 35px;
+  width: 380px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* Logo */
+.login-logo {
+  width: 110px;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.login-title {
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* Input group */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #b9e3ff;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #0095ff;
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #0095ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.login-btn:hover {
+  background: #007ad1;
+}
+
+/* Forgot password */
+.forgot {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #0095ff;
+  text-decoration: none;
+}
+
+/* Register section */
+.register-text {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.register-link {
+  color: #0095ff;
+  font-weight: 600;
+  text-decoration: none;
+}

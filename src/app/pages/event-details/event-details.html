@@ -1,0 +1,89 @@
+<div class="event-details-container" *ngIf="!loading && event">
+  
+  <div class="details-header">
+    <img [src]="event.image" class="details-image" alt="Event Image">
+    <div class="header-info">
+      <h1 class="details-title">{{ event.title }}</h1>
+      <div class="meta-row">
+        <span>📅 {{ event.date }} at {{ event.time }}</span>
+        <span>📍 {{ event.location }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <!-- Description Column -->
+    <div class="description-col">
+      <h2>About Event</h2>
+      <p class="details-description">{{ event.description }}</p>
+    </div>
+
+    <!-- Ticket Selection Column -->
+    <div class="ticket-col">
+      <div class="ticket-card">
+        <h3>Select Tickets</h3>
+        
+        <!-- Lower Foyer -->
+        <div class="section-group" *ngIf="lowerCategories.length > 0">
+          <h4>Lower Foyer</h4>
+          <div class="ticket-option" 
+               *ngFor="let cat of lowerCategories" 
+               [class.selected]="selectedCategory === cat"
+               (click)="selectCategory(cat)">
+            <div class="option-info">
+              <span class="opt-name">{{ cat.name }}</span>
+              <span class="opt-seats">{{ cat.seats }} seats left</span>
+            </div>
+            <span class="opt-price">Rp {{ cat.price }}</span>
+          </div>
+        </div>
+
+        <!-- Balcony -->
+        <div class="section-group" *ngIf="balconyCategories.length > 0">
+          <h4>Balcony</h4>
+          <div class="ticket-option" 
+               *ngFor="let cat of balconyCategories" 
+               [class.selected]="selectedCategory === cat"
+               (click)="selectCategory(cat)">
+            <div class="option-info">
+              <span class="opt-name">{{ cat.name }}</span>
+              <span class="opt-seats">{{ cat.seats }} seats left</span>
+            </div>
+            <span class="opt-price">Rp {{ cat.price }}</span>
+          </div>
+        </div>
+
+        <!-- Discount Code -->
+        <div class="discount-section" *ngIf="selectedCategory">
+          <label>Have a promo code?</label>
+          <div class="discount-input-group">
+            <input type="text" [(ngModel)]="discountCode" placeholder="Enter code">
+            <button (click)="applyDiscount()">Apply</button>
+          </div>
+          <p class="discount-msg success" *ngIf="discountApplied">Discount applied! -{{ discountAmount }}%</p>
+        </div>
+
+        <!-- Total & Buy -->
+        <div class="checkout-actions">
+          <div class="total-row" *ngIf="selectedCategory">
+            <span>Total</span>
+            <span class="total-price">Rp {{ finalPrice }}</span>
+          </div>
+          <button class="buy-btn" (click)="buyTicket()" [disabled]="!selectedCategory">
+            {{ selectedCategory ? 'Buy Ticket' : 'Select a Category' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="loading" class="loading-state">
+  Loading event details...
+</div>
+
+<div *ngIf="error" class="error-state">
+  {{ error }}
+</div>

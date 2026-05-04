@@ -1,0 +1,55 @@
+.waitlist-wrap {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 18px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.back-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+.meta { color: #333; margin-bottom: 12px; }
+
+.controls { margin-bottom: 12px; }
+.btn { padding: 8px 12px; background: #48cae4; color: white; border: none; border-radius: 6px; cursor: pointer; }
+
+.waitlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.waitlist-table th, .waitlist-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.notify-btn {
+  padding: 6px 8px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.remove-btn {
+  padding: 6px 8px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.empty { color: #666; padding: 12px 0; }

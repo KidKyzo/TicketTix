@@ -1,0 +1,118 @@
+/* RESET DEFAULT MARGIN */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header-bar {
+  width: 100%;
+  height: 30px;
+  background-color: #48cae4;
+}
+
+/* NAVBAR FULL WIDTH */
+.navbar {
+  position: sticky;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 30px;
+  height: auto;
+  z-index: 100;
+}
+
+/* LOGO DAN BRAND */
+.nav-left {
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  color: #48cae4;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #48cae4;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 14px 18px;
+  transition: 0.2s ease-in-out;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  gap: 5px;
+}
+
+.nav-links a svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.nav-links a:hover {
+  background: #caf0f8;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  padding: 14px 18px;
+  transition: 0.2s ease-in-out;
+  border: none;
+  background: #48cae4;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  gap: 5px;
+}
+
+.login-btn:hover {
+  background: #caf0f8;
+}
+
+.logged-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info {
+  padding: 6px 12px;
+  background: #f1f1f1;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

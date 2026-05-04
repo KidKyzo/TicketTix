@@ -1,0 +1,122 @@
+<div class="tickets-container">
+  <h2 class="page-title">My Tickets</h2>
+
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="loading-box">
+    <p>Loading your tickets...</p>
+  </div>
+
+  <!-- If no tickets -->
+  <div *ngIf="!isLoading && tickets.length === 0" class="empty-box">
+    <p>You have not purchased any tickets yet.</p>
+    <a href="/browse-events" class="browse-btn">Browse Events</a>
+  </div>
+
+  <!-- Ticket list -->
+  <div *ngFor="let t of tickets" class="ticket-card">
+    <div class="ticket-header">
+      <span class="booking-id">{{ t.transaction_id }}</span>
+      <span class="purchase-date">{{ formatDate(t.purchase_date) }}</span>
+    </div>
+
+    <div class="ticket-body">
+      <div class="left-section">
+        <img [src]="getEventImage(t)" class="event-img" />
+      </div>
+
+      <div class="ticket-info">
+        <h3 class="event-title">{{ getEventName(t) }}</h3>
+
+        <div class="event-details" *ngIf="t.event">
+          <span class="detail-item">Date: {{ t.event.date }}</span>
+          <span class="detail-item" *ngIf="t.event.time">Time: {{ t.event.time }}</span>
+          <span class="detail-item" *ngIf="t.event.location">Location: {{ t.event.location }}</span>
+        </div>
+
+        <!-- Seat Numbers -->
+        <div class="seats-section">
+          <div class="seats-label">Your Seats:</div>
+          <div class="seats-list">{{ getSeatNumbers(t) }}</div>
+        </div>
+
+        <!-- Tickets breakdown -->
+        <div class="ticket-list">
+          <div *ngFor="let seat of t.seats" class="ticket-row">
+            <span class="area-info">
+              {{ seat.category }}
+              <span class="seat-tag">{{ seat.seat_number }}</span>
+            </span>
+            <span class="price">Rp {{ formatNumber(seat.price) }}</span>
+          </div>
+        </div>
+
+        <div class="price-summary">
+          <div class="price-row" *ngIf="t.discount_amount > 0">
+            <span>Discount ({{ t.discount_code }})</span>
+            <span class="discount">- Rp {{ formatNumber(t.discount_amount) }}</span>
+          </div>
+          <div class="price-row total">
+            <span>Total</span>
+            <span>Rp {{ formatNumber(t.amount) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <img [src]="generateQR(t.transaction_id)" class="qr-img" />
+        <p class="qr-label">Scan at entry</p>
+        <button class="download-btn" (click)="downloadPdf(t)">Download PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Template for PDF Generation (Reused structure) -->
+<div id="hidden-pdf-template" class="hidden-template" *ngIf="pdfTicket">
+  <div class="tix-header">
+    <h1>TICKETIX</h1>
+    <span class="tix-id">#{{ pdfTicket.transaction_id }}</span>
+  </div>
+
+  <div class="tix-body">
+    <div class="tix-row">
+      <div class="tix-label">Event</div>
+      <div class="tix-value title">{{ pdfTicket.event?.event_name || 'Event Name' }}</div>
+    </div>
+
+    <div class="tix-cols">
+      <div class="tix-col">
+        <div class="tix-label">Date</div>
+        <div class="tix-value">{{ pdfTicket.event?.date }}</div>
+      </div>
+      <div class="tix-col">
+        <div class="tix-label">Time</div>
+        <div class="tix-value">{{ pdfTicket.event?.time }}</div>
+      </div>
+    </div>
+
+    <div class="tix-row">
+      <div class="tix-label">Location</div>
+      <div class="tix-value">{{ pdfTicket.event?.location }}</div>
+    </div>
+
+    <div class="tix-seats-box">
+      <div class="tix-label">Your Seats</div>
+      <div class="tix-seats">
+        <span class="tix-seat" *ngFor="let s of pdfTicket.seats">
+          {{ s.category }} - {{ s.seat_number }}
+        </span>
+      </div>
+    </div>
+
+    <div class="tix-qr">
+      <img [src]="generateQR(pdfTicket.transaction_id)" crossorigin="anonymous" />
+      <span>Scan to verify</span>
+    </div>
+  </div>
+
+  <div class="tix-footer">
+    <p>Authorized by Ticketix</p>
+    <p>Transaction ID: {{ pdfTicket.transaction_id }}</p>
+  </div>
+</div>

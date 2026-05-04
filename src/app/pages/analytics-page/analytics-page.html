@@ -1,0 +1,94 @@
+<div class="back-btn-wrap">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+</div>
+
+<div class="analytics-wrap" id="analyticsWrap">
+  <header class="header">
+    <div class="header-title">
+      <h2>Event Analytics</h2>
+      <p class="event-name" *ngIf="event">{{ event.title }}</p>
+    </div>
+    <div class="header-controls">
+      <div class="filter-row">
+        <label>Period</label>
+        <select [(ngModel)]="reportPeriod" (change)="onPeriodChange()">
+          <option value="select" disabled hidden>Select Period</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+
+        <div *ngIf="reportPeriod === 'daily' || reportPeriod === 'select'">
+          <label>Choose Date</label>
+          <input type="date" [(ngModel)]="filterDate" (change)="regenerate()" />
+        </div>
+
+        <div *ngIf="reportPeriod === 'weekly'">
+          <label>Week Start (Mon)</label>
+          <input type="date" [(ngModel)]="filterWeekStart" (change)="regenerate()" />
+        </div>
+
+        <div *ngIf="reportPeriod === 'monthly'">
+          <label>Choose Month</label>
+          <input type="month" [(ngModel)]="filterMonth" (change)="regenerate()" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" (click)="downloadPDF()">Download PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-cards">
+    <div class="card tickets-card">
+      <div class="card-content">
+        <div class="value">{{ totalTickets }}</div>
+        <div class="label">Tickets Sold</div>
+      </div>
+    </div>
+    <div class="card revenue-card">
+      <div class="card-content">
+        <div class="value">Rp {{ totalRevenue | number : '1.0-0' }}</div>
+        <div class="label">Total Revenue</div>
+      </div>
+    </div>
+    <div class="card occupancy-card">
+      <div class="card-content">
+        <div class="value">{{ occupancyPercent }}%</div>
+        <div class="label">Seat Occupancy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Ticket Sales</h3>
+      <div class="chart-container">
+        <canvas id="ticketChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <h3>Revenue Trend</h3>
+      <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-box full-width">
+      <h3>Seat Occupancy by Category</h3>
+      <div class="chart-container-occupancy">
+        <canvas id="occupancyChart"></canvas>
+      </div>
+      <div class="category-legend" *ngIf="categoryBreakdown.length > 0">
+        <div class="legend-item" *ngFor="let cat of categoryBreakdown">
+          <span class="legend-name">{{ cat.name }}:</span>
+          <span class="legend-sold">{{ cat.sold }} sold</span>
+          <span class="legend-available">{{ cat.available }} available</span>
+          <span class="legend-price">(Rp {{ cat.price | number:'1.0-0' }}/seat)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

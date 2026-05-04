@@ -1,0 +1,48 @@
+<div class="theater">
+  <div class="screen">STAGE</div>
+
+  <div class="rows" *ngFor="let row of rowsData">
+    <div class="container-row">
+      <div class="row-label">{{ row.label }}</div>
+
+      <div class="segment left">
+        <button *ngFor="let s of row.left"
+                class="seat"
+                [class.sold]="isSold(s)"
+                [class.selected]="isSelected(s)"
+                [disabled]="isSold(s)"
+                (click)="toggle(s)">
+          {{ s }}
+        </button>
+      </div>
+
+      <div class="segment middle">
+        <button *ngFor="let s of row.middle"
+                class="seat"
+                [class.sold]="isSold(s)"
+                [class.selected]="isSelected(s)"
+                [disabled]="isSold(s)"
+                (click)="toggle(s)">
+          {{ s }}
+        </button>
+      </div>
+
+      <div class="segment right">
+        <button *ngFor="let s of row.right"
+                class="seat"
+                [class.sold]="isSold(s)"
+                [class.selected]="isSelected(s)"
+                [disabled]="isSold(s)"
+                (click)="toggle(s)">
+          {{ s }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="sw free"></span> Free
+    <span class="sw sold"></span> Sold
+    <span class="sw sel"></span> Selected
+  </div>
+</div>

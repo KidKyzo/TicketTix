@@ -1,0 +1,50 @@
+<div class="waitlist-wrap" *ngIf="event; else noEvent">
+  <div class="top-row">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <h2>Waitlist for: {{ event.title }}</h2>
+  </div>
+
+  <div class="meta">
+    <div><strong>Date:</strong> {{ event.date }} {{ event.time }}</div>
+    <div><strong>Location:</strong> {{ event.location }}</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" (click)="clearAll()" [disabled]="entries.length === 0">Clear All</button>
+  </div>
+
+  <div *ngIf="entries.length > 0; else empty">
+    <table class="waitlist-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Joined At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of entries; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ e.email }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.joinedAt | date : 'medium' }}</td>
+          <td>
+            <button class="notify-btn" (click)="notifyEntry(e)">Notify</button>
+            <button class="remove-btn" (click)="removeEntry(e.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #empty>
+    <p class="empty">No waitlist entries for this event.</p>
+  </ng-template>
+</div>
+
+<ng-template #noEvent>
+  <p>Event not found.</p>
+  <button class="back-btn" (click)="goBack()">← Back</button>
+</ng-template>

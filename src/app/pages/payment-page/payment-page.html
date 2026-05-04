@@ -1,0 +1,55 @@
+<div class="payment-container">
+  <div class="payment-header">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <h1>Payment</h1>
+  </div>
+
+  <div class="payment-content" *ngIf="purchaseData">
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+
+      <table class="summary-table">
+        <tbody>
+          <tr>
+            <td class="label">Event:</td>
+            <td class="value">{{ purchaseData.event_name }}</td>
+          </tr>
+          <tr>
+            <td class="label">Ticket Type:</td>
+            <td class="value">{{ getTicketTypes() }}</td>
+          </tr>
+          <tr>
+            <td class="label">Event Date:</td>
+            <td class="value">{{ purchaseData.event_date || '-' }}</td>
+          </tr>
+          <tr>
+            <td class="label">Quantity:</td>
+            <td class="value highlight">{{ purchaseData.seats.length }} tickets</td>
+          </tr>
+          <tr>
+            <td class="label">Price per ticket:</td>
+            <td class="value">Rp {{ formatNumber(getAveragePrice()) }}</td>
+          </tr>
+          <tr *ngIf="purchaseData.discount_amount > 0">
+            <td class="label">Discount ({{ purchaseData.discount_code }}):</td>
+            <td class="value discount">- Rp {{ formatNumber(purchaseData.discount_amount) }}</td>
+          </tr>
+          <tr class="total-row">
+            <td class="label">Total:</td>
+            <td class="value total">Rp {{ formatNumber(purchaseData.total) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="cancel-btn" (click)="goBack()" [disabled]="isProcessing">Cancel</button>
+      <button class="pay-btn" (click)="confirmPayment()" [disabled]="isProcessing">
+        <span *ngIf="!isProcessing">Pay Rp {{ formatNumber(purchaseData.total) }}</span>
+        <span *ngIf="isProcessing">Processing...</span>
+      </button>
+    </div>
+  </div>
+</div>

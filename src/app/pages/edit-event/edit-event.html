@@ -1,0 +1,204 @@
+<div class="edit-event-container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">← Back to Dashboard</button>
+    <h1>Edit Event</h1>
+    <p class="subtitle">Update your event details</p>
+  </div>
+
+  <div class="form-container" *ngIf="!isLoading">
+    <!-- Event Title -->
+    <div class="form-group">
+      <label>Event Title *</label>
+      <input type="text" [(ngModel)]="event.title" placeholder="e.g. Summer Concert 2024" />
+    </div>
+
+    <!-- Date & Time -->
+    <div class="form-row">
+      <div class="form-group half">
+        <label>Date *</label>
+        <input type="date" [(ngModel)]="event.date" />
+      </div>
+      <div class="form-group half">
+        <label>Time *</label>
+        <input type="time" [(ngModel)]="event.time" />
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" [(ngModel)]="event.location" disabled />
+      <small>📍 Fixed Location: Ticketix Hall - Bali</small>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description *</label>
+      <textarea
+        [(ngModel)]="event.description"
+        rows="4"
+        placeholder="Tell attendees about your event..."
+      ></textarea>
+    </div>
+
+    <!-- Image Upload Section -->
+    <div class="form-group">
+      <label>Event Image *</label>
+      <div class="image-upload-section">
+        <div class="upload-area" *ngIf="!imagePreview">
+          <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            (change)="onImageSelect($event)"
+            hidden
+          />
+          <label for="imageUpload" class="upload-label">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">
+              <strong>Click to upload image</strong>
+              <span>or drag and drop</span>
+            </div>
+            <div class="upload-hint">PNG, JPG, GIF or WEBP (Max 2MB)</div>
+          </label>
+        </div>
+
+        <div class="image-preview-container" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Event preview" class="image-preview" />
+          <button type="button" class="remove-image-btn" (click)="removeImage()">
+            ✕ Remove Image
+          </button>
+          <button type="button" class="change-image-btn" (click)="fileInput.click()">
+            🔄 Change Image
+          </button>
+          <input #fileInput type="file" accept="image/*" (change)="onImageSelect($event)" hidden />
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticket Categories Section -->
+    <div class="pricing-section">
+      <h3>Ticket Categories *</h3>
+      <p class="capacity-info">
+        <span
+          class="capacity-badge"
+          [class.error]="totalSeats !== 300"
+          [class.success]="totalSeats === 300"
+        >
+          Total: {{ totalSeats }} / 300 Seats
+        </span>
+      </p>
+
+      <!-- Lower Foyer Section -->
+      <div class="section-group">
+        <div class="section-header">
+          <div>
+            <h4>Lower Foyer</h4>
+            <p
+              class="limit-info"
+              [class.error]="lowerSeatsCount !== 200"
+              [class.success]="lowerSeatsCount === 200"
+            >
+              Seats Assigned: {{ lowerSeatsCount }} / 200
+            </p>
+          </div>
+          <button
+            type="button"
+            class="add-cat-btn"
+            (click)="addCategory('lower')"
+            *ngIf="lowerCategories.length === 0"
+          >
+            + Add Category
+          </button>
+        </div>
+
+        <div class="category-headers" *ngIf="lowerCategories.length > 0">
+          <span>Category Name</span>
+          <span>Allocated Seats</span>
+          <span>Price per Seat</span>
+          <span></span>
+        </div>
+
+        <div class="category-list">
+          <div class="category-row" *ngFor="let cat of lowerCategories; let i = index">
+            <input type="text" [(ngModel)]="cat.name" placeholder="e.g. VIP, Regular" />
+            <input type="number" [(ngModel)]="cat.seats" min="1" placeholder="Seats" />
+            <div class="price-input-group">
+              <span class="prefix">Rp</span>
+              <input type="number" [(ngModel)]="cat.price" min="0" placeholder="Price" />
+            </div>
+            <button type="button" class="remove-btn" (click)="removeCategory('lower', i)">✕</button>
+          </div>
+          <p class="empty-msg" *ngIf="lowerCategories.length === 0">No categories added yet.</p>
+        </div>
+      </div>
+
+      <!-- Balcony Section -->
+      <div class="section-group">
+        <div class="section-header">
+          <div>
+            <h4>Balcony</h4>
+            <p
+              class="limit-info"
+              [class.error]="balconySeatsCount !== 100"
+              [class.success]="balconySeatsCount === 100"
+            >
+              Seats Assigned: {{ balconySeatsCount }} / 100
+            </p>
+          </div>
+          <button
+            type="button"
+            class="add-cat-btn"
+            (click)="addCategory('balcony')"
+            *ngIf="balconyCategories.length === 0"
+          >
+            + Add Category
+          </button>
+        </div>
+
+        <div class="category-headers" *ngIf="balconyCategories.length > 0">
+          <span>Category Name</span>
+          <span>Allocated Seats</span>
+          <span>Price per Seat</span>
+          <span></span>
+        </div>
+
+        <div class="category-list">
+          <div class="category-row" *ngFor="let cat of balconyCategories; let i = index">
+            <input type="text" [(ngModel)]="cat.name" placeholder="e.g. VIP, Regular" />
+            <input type="number" [(ngModel)]="cat.seats" min="1" placeholder="Seats" />
+            <div class="price-input-group">
+              <span class="prefix">Rp</span>
+              <input type="number" [(ngModel)]="cat.price" min="0" placeholder="Price" />
+            </div>
+            <button type="button" class="remove-btn" (click)="removeCategory('balcony', i)">
+              ✕
+            </button>
+          </div>
+          <p class="empty-msg" *ngIf="balconyCategories.length === 0">No categories added yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discount Code (Optional) -->
+    <div class="form-group">
+      <label>Discount Code (Optional)</label>
+      <input type="text" [(ngModel)]="discountCode" placeholder="e.g. PROMO10" />
+      <small>If provided, this code gives 10% discount to attendees.</small>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="cancel-btn" (click)="goBack()" type="button">Cancel</button>
+      <button class="save-btn" (click)="updateEvent()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Updating Event...' : '✓ Update Event' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="loader"></div>
+    <p>Loading event details...</p>
+  </div>
+</div>

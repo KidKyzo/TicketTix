@@ -1,0 +1,152 @@
+<!-- HERO / CAROUSEL SECTION -->
+<div class="page-body">
+  <div class="container-xl">
+    <div class="row row-cards">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="card-body p-0">
+            <div id="carousel-captions" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                  <img
+                    class="d-block w-100"
+                    alt="Slide 1"
+                    src="Event(2).jpg"
+                  />
+                  <div class="carousel-caption-background d-none d-md-block"></div>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Make Your Dream Event Come True</h3>
+                    <p>Login and Create Your Event</p>
+                    <div class="action-bar">
+                      <a routerLink="/register-organizer" class="action-btn primary">
+                        <svg
+                          class="btn-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                            d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"
+                          />
+                        </svg>
+                        Create Event</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block w-100"
+                    alt="Slide 2"
+                    src="Event(1).jpg"
+                  />
+                  <div class="carousel-caption-background d-none d-md-block"></div>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Want to Create an Event But Don't Know How?</h3>
+                    <p>Contact Us Today</p>
+                    <div class="action-bar">
+                      <a routerLink="/register-organizer" class="action-btn primary">
+                        <svg
+                          class="btn-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                            d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"
+                          />
+                        </svg>
+                        Create Event</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block w-100"
+                    alt="Slide 3"
+                    src="Event(3).jpg"
+                  />
+                  <div class="carousel-caption-background d-none d-md-block"></div>
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>Trusted by More Than 300+ Events Across Indonesia</h3>
+                    <p>Create Your Event Today</p>
+                    <div class="action-bar">
+                      <a routerLink="/register-organizer" class="action-btn primary">
+                        <svg
+                          class="btn-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                        >
+                          <path
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                            d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"
+                          />
+                        </svg>
+                        Create Event</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carousel-captions"
+                role="button"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carousel-captions"
+                role="button"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- END OF HERO / CAROUSEL SECTION -->
+
+        <!-- EVENT CARDS -->
+        <h2 class="browse-title">Browse Events</h2>
+
+        <!-- EVENT GRID -->
+        <div class="event-grid">
+          @for(i of data; track i.id) {
+          <a class="event-card" [routerLink]="['/event-details', i.id]">
+            <img [src]="i.image" class="event-img" />
+
+            <div class="event-content">
+              <div class="event-title one-line">{{ i.title }}</div>
+              <div class="event-desc one-line">{{ i.description }}</div>
+
+              <div class="divider"></div>
+
+              <div class="event-date">Date : {{ i.date }}</div>
+              <div class="event-time">Time : {{ i.time }}</div>
+              <div class="event-location">{{ i.location }}</div>
+              <div class="event-price">From Rp {{ getMinPrice(i) | number }}</div>
+            </div>
+          </a>
+          }
+        </div>
+
+        <!-- END OF EVENT CARDS -->
+        <div class="action-bar">
+          <a routerLink="/browse-events" class="action-btn primary">See More Events</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

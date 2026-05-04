@@ -1,0 +1,74 @@
+<div class="pdf-container">
+    <div class="loading" *ngIf="isLoading">
+        <p>Loading ticket details...</p>
+        <div class="spinner"></div>
+    </div>
+
+    <div class="error" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+        <a href="/" class="home-btn">Go Home</a>
+    </div>
+
+    <div class="ticket-viewer" *ngIf="!isLoading && ticket">
+        <!-- This section actually renders the PDF blob if available -->
+        <div class="pdf-wrapper" *ngIf="pdfUrl">
+            <embed [src]="pdfUrl" type="application/pdf" width="100%" height="100%" />
+        </div>
+
+        <!-- Fallback or generating state -->
+        <div class="generating" *ngIf="!pdfUrl">
+            <p>Generating secure ticket...</p>
+        </div>
+    </div>
+
+    <!-- Hidden Ticket Template for PDF Generation -->
+    <div id="ticket-template" class="hidden-template" *ngIf="ticket">
+        <div class="tix-header">
+            <h1>TICKETIX</h1>
+            <span class="tix-id">#{{ ticket.transaction_id }}</span>
+        </div>
+
+        <div class="tix-body">
+            <div class="tix-row">
+                <div class="tix-label">Event</div>
+                <div class="tix-value title">{{ ticket.event?.event_name }}</div>
+            </div>
+
+            <div class="tix-cols">
+                <div class="tix-col">
+                    <div class="tix-label">Date</div>
+                    <div class="tix-value">{{ ticket.event?.date }}</div>
+                </div>
+                <div class="tix-col">
+                    <div class="tix-label">Time</div>
+                    <div class="tix-value">{{ ticket.event?.time }}</div>
+                </div>
+            </div>
+
+            <div class="tix-row">
+                <div class="tix-label">Location</div>
+                <div class="tix-value">{{ ticket.event?.location }}</div>
+            </div>
+
+            <div class="tix-seats-box">
+                <div class="tix-label">Your Seats</div>
+                <div class="tix-seats">
+                    <span class="tix-seat" *ngFor="let s of ticket.seats">
+                        {{ s.category }} - {{ s.seat_number }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="tix-qr">
+                <!-- QR pointing back to this page for validation -->
+                <img [src]="qrUrl" />
+                <span>Scan to verify</span>
+            </div>
+        </div>
+
+        <div class="tix-footer">
+            <p>Authorized by Ticketix</p>
+            <p>Transaction ID: {{ ticket.transaction_id }}</p>
+        </div>
+    </div>
+</div>

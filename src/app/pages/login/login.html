@@ -1,0 +1,43 @@
+<div class="login-bg">
+
+  <div class="login-box">
+
+    <img src="assets/logo.png" class="login-logo" />
+
+    <h2 class="login-title">Hai, senang ketemu lagi!</h2>
+
+    <form (ngSubmit)="login()">
+
+      <div class="input-group">
+        <input 
+          type="text"
+          placeholder="Email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <input 
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        >
+      </div>
+
+      <button class="login-btn" type="submit">Login</button>
+    </form>
+
+    <a class="forgot" routerLink="/forgot-password">Lupa password?</a>
+
+    <p class="register-text">
+      Belum punya akun? 
+      <a routerLink="/register" class="register-link">Daftar</a>
+    </p>
+
+  </div>
+
+</div>

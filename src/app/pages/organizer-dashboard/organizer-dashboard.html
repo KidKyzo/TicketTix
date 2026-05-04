@@ -1,0 +1,94 @@
+<!-- TOP HEADER -->
+<div class="top-right-header">
+  <span class="user-info">Logged in as: Organizer</span>
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>
+
+<div class="dashboard-container">
+  <header class="dash-header">
+    <h1>Organizer Dashboard</h1>
+    <div class="header-actions">
+      <a routerLink="/create-event" class="create-btn">+ Create Event</a>
+    </div>
+  </header>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">{{ totalEvents }}</div>
+      <div class="stat-label">Total Events</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{{ totalTicketsSold }}</div>
+      <div class="stat-label">Tickets Sold</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">Rp {{ formatNumber(totalRevenue) }}</div>
+      <div class="stat-label">Total Revenue</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{{ overallOccupancy }}%</div>
+      <div class="stat-label">Avg. Occupancy</div>
+    </div>
+  </div>
+
+  <!-- Events List -->
+  <section class="events-section">
+    <h2>Your Events</h2>
+
+    <div *ngIf="events.length > 0; else noEvents" class="events-list">
+      <div class="event-card" *ngFor="let event of events; let i = index">
+        <img [src]="event.image || 'assets/placeholder.jpg'" class="event-image" alt="Event" />
+
+        <div class="event-content">
+          <h3 class="event-title">{{ event.title }}</h3>
+          <div class="event-meta">
+            <span>{{ event.date }}</span>
+            <span>{{ event.time }}</span>
+          </div>
+
+          <!-- Occupancy Bar -->
+          <div class="occupancy-section">
+            <div class="occ-header">
+              <span>Seat Occupancy</span>
+              <span class="occ-percent">{{ eventOccupancyPercent(event) }}%</span>
+            </div>
+            <div class="occ-bar">
+              <div class="occ-fill" [style.width.%]="eventOccupancyPercent(event)"></div>
+            </div>
+            <div class="area-stats">
+              <span class="area-item"> Balcony: {{ getEventSoldSeats(event).balcony }}/100 </span>
+              <span class="area-item"> Lower Foyer: {{ getEventSoldSeats(event).lower }}/200 </span>
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="quick-stats">
+            <div class="qs-item">
+              <span class="qs-value">{{ eventTicketsSold(event.id) }}</span>
+              <span class="qs-label">Sold</span>
+            </div>
+            <div class="qs-item">
+              <span class="qs-value">Rp {{ formatNumber(eventRevenue(event.id)) }}</span>
+              <span class="qs-label">Revenue</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-actions">
+          <a [routerLink]="['/edit-event', event.id]" class="action-btn edit">Edit</a>
+          <a [routerLink]="['/analytics', event.id]" class="action-btn analytics">Analytics</a>
+          <button class="action-btn btn-delete" (click)="deleteEvent(event.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noEvents>
+      <div class="empty-state">
+        <h3>No Events Yet</h3>
+        <p>Start by creating your first event!</p>
+        <a routerLink="/create-event" class="create-btn">+ Create Event</a>
+      </div>
+    </ng-template>
+  </section>
+</div>
