@@ -2,6 +2,13 @@
 
 Ticketix is a comprehensive web-based event management platform. It enables event organizers to manage tickets, seating maps, and sales analytics while providing users with a seamless and secure ticket purchasing experience through real-time payment integration.
 
+## 👥 Meet the Team
+
+This project was developed as a collaborative effort to build a robust event management solution.
+
+Bagoes Chinmayananda Ariel Oka / E2400074 
+Ivan Maulana / E2400084 
+
 ## 🚀 Key Features
 
 - **Interactive Seat Mapping:** Users can visually select their preferred seats through an integrated and responsive seating layout.
