@@ -6,8 +6,7 @@ Ticketix is a comprehensive web-based event management platform. It enables even
 
 This project was developed as a collaborative effort to build a robust event management solution.
 
-Bagoes Chinmayananda Ariel Oka / E2400074 
-Ivan Maulana / E2400084 
+Bagoes Chinmayananda Ariel Oka / E2400074 & Ivan Maulana / E2400084 
 
 ## 🚀 Key Features
 
