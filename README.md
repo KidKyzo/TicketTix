@@ -1,59 +1,35 @@
-# Assignment1
+# Ticketix - Web-Based Event Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+Ticketix is a comprehensive web-based event management platform. It enables event organizers to manage tickets, seating maps, and sales analytics while providing users with a seamless and secure ticket purchasing experience through real-time payment integration.
 
-## Development server
+## 🚀 Key Features
 
-To start a local development server, run:
+- **Interactive Seat Mapping:** Users can visually select their preferred seats through an integrated and responsive seating layout.
+- **Secure Payment System:** Integrated with **Midtrans Payment Gateway** to ensure safe, automatic, and multi-channel transactions.
+- **Organizer Dashboard:** A dedicated space for organizers to monitor sales statistics and manage event data.
+- **Event Management:** Full CRUD (Create, Read, Update, Delete) capabilities for event listings and details.
+- **Automated Email Confirmation:** Sends digital tickets in PDF format automatically via email using Nodemailer.
+- **Waitlist System:** Allows users to join a waiting list for sold-out events.
 
-```bash
-ng serve
-```
+## 🛠️ Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Frontend
+- **Framework:** Angular 18+
+- **Styling:** Modern CSS3 & Responsive Design
+- **State Management:** Angular Services & RxJS
 
-## Code scaffolding
+### Backend
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB Atlas (Mongoose ODM)
+- **Email Service:** Nodemailer
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Third-Party Integration
+- **Payment Gateway:** Midtrans (Snap API)
 
-```bash
-ng generate component component-name
-```
+## 📦 Installation & Setup
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Prerequisites
+- [Node.js](https://nodejs.org/) (Version 18 or later)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account
+- [Midtrans Sandbox](https://dashboard.sandbox.midtrans.com/) account
